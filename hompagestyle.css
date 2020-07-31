@@ -1,0 +1,216 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-size:15px;
+}
+html{
+    background-color:#272822;
+}
+body {
+    background-color: #fff;
+/*    height: 100vh;*/
+}
+.remainingbody {
+    width: 100%;
+    height: 100vh;
+    background-color: #272822;
+}
+
+.codeAreaContainer {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 65%;
+    background-color: #272822;
+}
+
+.ioAreaContainer {
+    margin: 0px;
+    padding: 1px;
+    display: flex;
+    width: 100%;
+    height: 24.8%;
+    background-color: #272822;
+}
+
+
+.iholder {
+    margin:0px;
+    width: 50%;
+    height: 100%;
+    background-color: #272822;
+}
+
+.oholder {
+    margin:0px 0px 0px 10px;
+    width: 50%;
+    height: 100%;
+    background-color: #272822;
+    overflow: hidden;
+}
+
+.toleft{
+        background-color: #343a40;
+}
+
+.runbutton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100%;
+    margin-left:20px;
+    padding: 1px;
+    height: 40px;
+    font-weight: bold;
+    background-color: orange;
+    width: 100px;
+    border-radius: 20px;
+}
+
+.runbutton-add{
+    font-size:80%;
+/*    color: orange;*/
+    background-color:#888;
+}
+
+
+#inputbox {
+    padding: 14px;
+    margin: 0px;
+    width: 100%;
+    color: white;
+    font-size: 94%;
+    background-color: #272822;
+    line-height: 1.3em;
+    height: 100%;
+}
+
+#outputbox {
+    padding: 14px;
+    width: 100%;
+    color: white;
+        font-size: 94%;
+    line-height: 1.3em;
+    height: 100%;
+    background-color: #272822;
+}
+
+#editor {
+/*    font-size:14px;*/
+    position: relative;
+    width: 100%;
+    height:65vh;
+}
+
+#editor *{ font-family : monospace !important;font-size: 16px !important;direction:ltr !important;text-align:left !important;}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: orange;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+.exec{
+    color: white;
+}
+
+.lang-sel{
+    
+    border: none;
+    font-size: 100%;
+}
+option{
+    font-size:100%;
+    text-transform: lowercase;
+    margin:1px;
+}
+
+
+.form-group{
+    margin: 0px;   
+}
+
+.mnhold{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Media Queries*/
+
+/*laptops and desktops*/
+@media only screen and (min-width:1200px) {
+
+
+}
+
+/*potrait mode for tabs*/
+@media only screen and (max-width:1023px) {
+    
+
+
+}
+
+/*tabs*/
+@media only screen and (max-width:767px) {
+
+
+}
+
+/*normal phones*/
+@media only screen and (max-width:480px) {
+    * {
+        font-size: 14px;
+    }
+    .remainingbody{
+        width: 100%;
+    }
+    .runbutton{
+        margin-left: 8px;
+    }
+    #outputbox{
+        margin-left: 1px;
+    }
+    
+
+}
+
+
+
