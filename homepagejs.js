@@ -80,7 +80,13 @@ const goOutp = () => {
                     } else if (resp.status.id === 3) {
                         outputArea.textContent = atob(resp.stdout);
                     } else {
-                        outputArea.textContent = atob(resp.status.description);
+                        if(langid === 71){
+                            outputArea.textContent = atob(resp.stderr);
+                        }else{
+                            
+                        outputArea.textContent = resp.status.description;
+                        }
+                        //if python then stderr report
                     }
                     runbutton.textContent = "RUN";
                     runbutton.classList.remove("runbutton-add");
@@ -90,7 +96,7 @@ const goOutp = () => {
                 }
 
             } catch (err) {
-                console.log("some err");
+                console.log(err);
                 runbutton.textContent = "RUN";
                 runbutton.classList.remove("runbutton-add");
                 runbutton.disabled = false;
