@@ -3,6 +3,7 @@ var execbutton = document.querySelector(".exec");
 var langpicker = document.getElementById("lang-pick");
 var outputArea = document.querySelector("#outputbox");
 var inparea = document.querySelector("#inputbox");
+ace.require("ace/ext/language_tools");
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/c_cpp");
@@ -12,6 +13,9 @@ var langid = 50;
 editor.setOptions({
     autoScrollEditorIntoView: true,
     copyWithEmptySelection: true,
+    enableBasicAutocompletion: true,
+    enableSnippets: true,
+    enableLiveAutocompletion: true
 });
 
 var subid;
@@ -40,7 +44,7 @@ runbutton.addEventListener("click", () => {
         if (this.readyState === this.DONE && called === 1) {
             try {
                 subid = JSON.parse(this.response).token;
-//                console.log(subid);
+                //                console.log(subid);
                 runbutton.textContent = "COMPILING";
                 goOutp();
             } catch (err) {
@@ -64,30 +68,30 @@ const goOutp = () => {
     called = 2;
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE && called === 2) {
-            try{
-            var resp = JSON.parse(this.response);
-//            console.log(resp);
-            var mytimefun;
-            if (resp.status.id === 1 || resp.status.id === 2) {
-                goOutp();
-            } else {
-                if (resp.status.id === 6) {
-                    outputArea.textContent = atob(resp.compile_output);
-                } else if (resp.status.id === 3) {
-                    outputArea.textContent = atob(resp.stdout);
+            try {
+                var resp = JSON.parse(this.response);
+                //            console.log(resp);
+                var mytimefun;
+                if (resp.status.id === 1 || resp.status.id === 2) {
+                    goOutp();
                 } else {
-                    outputArea.textContent = atob(resp.status.description);
-                }
-                runbutton.textContent = "RUN";
-                runbutton.classList.remove("runbutton-add");
-                runbutton.disabled = false;
-                //            clearTimeout(mytimefun);
+                    if (resp.status.id === 6) {
+                        outputArea.textContent = atob(resp.compile_output);
+                    } else if (resp.status.id === 3) {
+                        outputArea.textContent = atob(resp.stdout);
+                    } else {
+                        outputArea.textContent = atob(resp.status.description);
+                    }
+                    runbutton.textContent = "RUN";
+                    runbutton.classList.remove("runbutton-add");
+                    runbutton.disabled = false;
+                    //            clearTimeout(mytimefun);
 
-            }
-                
-            }catch(err){
+                }
+
+            } catch (err) {
                 console.log("some err");
-                                runbutton.textContent = "RUN";
+                runbutton.textContent = "RUN";
                 runbutton.classList.remove("runbutton-add");
                 runbutton.disabled = false;
             }
