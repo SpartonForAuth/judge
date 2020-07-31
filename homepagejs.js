@@ -1,12 +1,56 @@
 var runbutton = document.querySelector(".runbutton");
 var execbutton = document.querySelector(".exec");
+var settingsbutton = document.querySelector(".settingsbut");
 var langpicker = document.getElementById("lang-pick");
 var outputArea = document.querySelector("#outputbox");
 var inparea = document.querySelector("#inputbox");
+var bodytotal = document.querySelector(".remainingbody");
+var navbarOfficial = document.querySelector(".navbar");
 ace.require("ace/ext/language_tools");
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/c_cpp");
+
+const startTheme = () => {
+    inparea.classList.add('dark');
+    outputArea.classList.add('dark');
+    bodytotal.classList.add('dark');
+    navbarOfficial.classList.add('navbar-dark');
+}
+
+startTheme();
+
+const lightMode = () => {
+    editor.setTheme("ace/theme/xcode");
+    inparea.classList.remove('dark');
+    outputArea.classList.remove('dark');
+    inparea.classList.add('light');
+    outputArea.classList.add('light');
+    bodytotal.classList.remove('dark');
+    bodytotal.classList.add('light');
+    navbarOfficial.classList.remove('navbar-dark');
+    navbarOfficial.classList.add('navbar-light');
+}
+const darkMode = () => {
+    editor.setTheme("ace/theme/monokai");
+    inparea.classList.remove('light');
+    outputArea.classList.remove('light');
+    inparea.classList.add('dark');
+    outputArea.classList.add('dark');
+    bodytotal.classList.remove('light');
+    bodytotal.classList.add('dark');
+    navbarOfficial.classList.remove('navbar-light');
+    navbarOfficial.classList.add('navbar-dark');
+}
+
+var isdark = true;
+settingsbutton.addEventListener("click", () => {
+    if (isdark)
+        lightMode();
+    else
+        darkMode();
+    isdark = !isdark;
+});
 
 var langid = 50;
 // use setOptions method to set several options at once
@@ -80,11 +124,11 @@ const goOutp = () => {
                     } else if (resp.status.id === 3) {
                         outputArea.textContent = atob(resp.stdout);
                     } else {
-                        if(langid === 71){
+                        if (langid === 71) {
                             outputArea.textContent = atob(resp.stderr);
-                        }else{
-                            
-                        outputArea.textContent = resp.status.description;
+                        } else {
+
+                            outputArea.textContent = resp.status.description;
                         }
                         //if python then stderr report
                     }

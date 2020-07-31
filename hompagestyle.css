@@ -4,17 +4,17 @@
     padding: 0px;
     font-size:15px;
 }
-html{
-    background-color:#272822;
+.navbar-light{
+    color:black;
+    background-color:#eeeeee;
 }
-body {
-    background-color: #fff;
-/*    height: 100vh;*/
+.navbar-dark{
+    color:white;
+    background-color:#343a40;
 }
 .remainingbody {
     width: 100%;
     height: 100vh;
-    background-color: #272822;
 }
 
 .codeAreaContainer {
@@ -22,7 +22,6 @@ body {
     margin: 0px;
     width: 100%;
     height: 65%;
-    background-color: #272822;
 }
 
 .ioAreaContainer {
@@ -31,7 +30,6 @@ body {
     display: flex;
     width: 100%;
     height: 24.8%;
-    background-color: #272822;
 }
 
 
@@ -39,19 +37,17 @@ body {
     margin:0px;
     width: 50%;
     height: 100%;
-    background-color: #272822;
 }
 
 .oholder {
     margin:0px 0px 0px 10px;
     width: 50%;
     height: 100%;
-    background-color: #272822;
     overflow: hidden;
 }
 
 .toleft{
-        background-color: #343a40;
+/*        background-color: #343a40;*/
 }
 
 .runbutton {
@@ -80,9 +76,8 @@ body {
     padding: 14px;
     margin: 0px;
     width: 100%;
-    color: white;
+/*    color: white;*/
     font-size: 94%;
-    background-color: #272822;
     line-height: 1.3em;
     height: 100%;
 }
@@ -90,11 +85,10 @@ body {
 #outputbox {
     padding: 14px;
     width: 100%;
-    color: white;
+/*    color: white;*/
         font-size: 94%;
     line-height: 1.3em;
     height: 100%;
-    background-color: #272822;
 }
 
 #editor {
@@ -150,7 +144,11 @@ option{
 }
 
 
-
+.settingsbut{
+    font-size: 170%;
+    margin-right: 20px;
+    color: orange;
+}
 
 
 
@@ -177,7 +175,13 @@ option{
 
 /*laptops and desktops*/
 @media only screen and (min-width:1200px) {
-
+    .iholder{
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+    .oholder{
+        margin-right: 4px;
+    }
 
 }
 
@@ -185,7 +189,13 @@ option{
 @media only screen and (max-width:1023px) {
     
 
-
+    .iholder{
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+    .oholder{
+        margin-right: 4px;
+    }
 }
 
 /*tabs*/
@@ -205,12 +215,31 @@ option{
     .runbutton{
         margin-left: 8px;
     }
-    #outputbox{
-        margin-left: 1px;
+        .iholder{
+        margin-left: 4px;
+        margin-right: 4px;
     }
+    .oholder{
+        margin-right: 4px;
+    }
+}
     
 
 }
+
+
+
+.light{
+    background-color:white;
+    color:black;
+}
+
+.dark{
+    background-color:#272822;
+    color: white;
+}
+
+
 
 
 
