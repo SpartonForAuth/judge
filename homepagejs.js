@@ -6,6 +6,22 @@ var outputArea = document.querySelector("#outputbox");
 var inparea = document.querySelector("#inputbox");
 var bodytotal = document.querySelector(".remainingbody");
 var navbarOfficial = document.querySelector(".navbar");
+var ioContainer = document.querySelector(".ioAreaContainer");
+var codeAreaContainer = document.querySelector(".codeAreaContainer");
+var settingsPage = document.querySelector(".settingspage");
+
+
+var setOne = document.querySelector(".setOne");
+var setTwo = document.querySelector(".setTwo");
+var setThree = document.querySelector(".setThree");
+var setButTexts = document.getElementsByClassName("setButText");
+
+const closeSet = () => {
+    settingsPage.style.display = "none";
+}
+
+closeSet();
+
 ace.require("ace/ext/language_tools");
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
@@ -16,6 +32,11 @@ const startTheme = () => {
     outputArea.classList.add('dark');
     bodytotal.classList.add('dark');
     navbarOfficial.classList.add('navbar-dark');
+    ioContainer.style.backgroundColor = "#2f3129";
+    for (var i = 0; i < setButTexts.length; i++) {
+        setButTexts[i].style.color = "white";
+    }
+
 }
 
 startTheme();
@@ -30,6 +51,11 @@ const lightMode = () => {
     bodytotal.classList.add('light');
     navbarOfficial.classList.remove('navbar-dark');
     navbarOfficial.classList.add('navbar-light');
+    ioContainer.style.backgroundColor = "#eeeeee";
+    for (var i = 0; i < setButTexts.length; i++) {
+        setButTexts[i].style.color = "black";
+    }
+
 }
 const darkMode = () => {
     editor.setTheme("ace/theme/monokai");
@@ -41,16 +67,55 @@ const darkMode = () => {
     bodytotal.classList.add('dark');
     navbarOfficial.classList.remove('navbar-light');
     navbarOfficial.classList.add('navbar-dark');
+    ioContainer.style.backgroundColor = "#2f3129";
+    for (var i = 0; i < setButTexts.length; i++) {
+        setButTexts[i].style.color = "white";
+    }
+
 }
 
 var isdark = true;
-settingsbutton.addEventListener("click", () => {
+setOne.addEventListener("click", () => {
     if (isdark)
         lightMode();
     else
         darkMode();
     isdark = !isdark;
 });
+
+
+settingsbutton.addEventListener("click", () => {
+    settingsPage.style.display = "flex";
+})
+
+setThree.addEventListener("click", () => {
+    closeSet();
+})
+
+var inpMode = true;
+const openIOArea = () => {
+    ioContainer.style.display = "flex";
+    codeAreaContainer.style.height = "65%";
+    editor.resize();
+    inpMode = !inpMode;
+    closeSet();
+}
+const closeIOArea = () => {
+    ioContainer.style.display = "none";
+    codeAreaContainer.style.height = "93%";
+    editor.resize();
+    inpMode = !inpMode;
+    closeSet();
+}
+setTwo.addEventListener("click", () => {
+    if (inpMode) {
+        closeIOArea();
+    } else {
+        openIOArea();
+    }
+
+});
+
 
 var langid = 50;
 // use setOptions method to set several options at once
@@ -69,44 +134,55 @@ var data;
 var called;
 
 runbutton.addEventListener("click", () => {
-    runbutton.textContent = "SUBMITTING";
-    runbutton.classList.add("runbutton-add");
-    runbutton.disabled = true;
-    outputArea.textContent = "";
-    called = 1;
-    var inpdata = inparea.value;
-    var typedPgm = editor.getValue();
-    //    console.log(typedPgm);
-    data = JSON.stringify({
-        "language_id": langid,
-        "source_code": `${typedPgm}`,
-        "stdin": inpdata
-    });
+
+    var issued = true;
+    if (!inpMode) {
+        openIOArea();
+        issued = false;
+    }
+    if (issued) {
+        runbutton.textContent = "SUBMITTING";
+        runbutton.classList.add("runbutton-add");
+        runbutton.disabled = true;
+        outputArea.textContent = "";
+        called = 1;
+        var inpdata = inparea.value;
+        var typedPgm = editor.getValue();
+        //    console.log(typedPgm);
+        data = JSON.stringify({
+            "language_id": langid,
+            "source_code": `${typedPgm}`,
+            "stdin": inpdata
+        });
 
 
-    xhr.addEventListener("readystatechange", function () {
-        if (this.readyState === this.DONE && called === 1) {
-            try {
-                subid = JSON.parse(this.response).token;
-                //                console.log(subid);
-                runbutton.textContent = "COMPILING";
-                goOutp();
-            } catch (err) {
-                console.log("some");
-                runbutton.textContent = "RUN";
-                runbutton.classList.remove("runbutton-add");
-                runbutton.disabled = false;
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE && called === 1) {
+                try {
+                    subid = JSON.parse(this.response).token;
+                    //                console.log(subid);
+                    runbutton.textContent = "COMPILING";
+                    goOutp();
+                } catch (err) {
+                    console.log("some");
+                    runbutton.textContent = "RUN";
+                    runbutton.classList.remove("runbutton-add");
+                    runbutton.disabled = false;
+                }
             }
-        }
-    });
+        });
 
-    xhr.open("POST", "https://judge0.p.rapidapi.com/submissions");
-    xhr.setRequestHeader("x-rapidapi-host", "judge0.p.rapidapi.com");
-    xhr.setRequestHeader("x-rapidapi-key", "17ea6ab84cmsh986b74a45401961p1b47a4jsn74daedf4a01c");
-    xhr.setRequestHeader("content-type", "application/json");
-    xhr.setRequestHeader("accept", "application/json");
+        xhr.open("POST", "https://judge0.p.rapidapi.com/submissions");
+        xhr.setRequestHeader("x-rapidapi-host", "judge0.p.rapidapi.com");
+        xhr.setRequestHeader("x-rapidapi-key", "17ea6ab84cmsh986b74a45401961p1b47a4jsn74daedf4a01c");
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.setRequestHeader("accept", "application/json");
 
-    xhr.send(data);
+        xhr.send(data);
+
+    }
+
+
 });
 const goOutp = () => {
     called = 2;

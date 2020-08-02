@@ -2,16 +2,19 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    font-size:15px;
+    font-size: 15px;
 }
-.navbar-light{
-    color:black;
-    background-color:#eeeeee;
+
+.navbar-light {
+    color: black;
+    background-color: #eeeeee;
 }
-.navbar-dark{
-    color:white;
-    background-color:#343a40;
+
+.navbar-dark {
+    color: white;
+    background-color: #343a40;
 }
+
 .remainingbody {
     width: 100%;
     height: 100vh;
@@ -26,7 +29,9 @@
 
 .ioAreaContainer {
     margin: 0px;
-    padding: 1px;
+    padding-top: 4px;
+    padding-bottom: 0px;
+    /*    background-color: black;*/
     display: flex;
     width: 100%;
     height: 24.8%;
@@ -34,20 +39,18 @@
 
 
 .iholder {
-    margin:0px;
     width: 50%;
     height: 100%;
 }
 
 .oholder {
-    margin:0px 0px 0px 10px;
     width: 50%;
     height: 100%;
     overflow: hidden;
 }
 
-.toleft{
-/*        background-color: #343a40;*/
+.toleft {
+    /*        background-color: #343a40;*/
 }
 
 .runbutton {
@@ -56,7 +59,7 @@
     justify-content: center;
     align-items: center;
     font-size: 100%;
-    margin-left:20px;
+    margin-left: 20px;
     padding: 1px;
     height: 40px;
     font-weight: bold;
@@ -65,78 +68,106 @@
     border-radius: 20px;
 }
 
-.runbutton-add{
-    font-size:80%;
-/*    color: orange;*/
-    background-color:#888;
+.runbutton-add {
+    font-size: 80%;
+    /*    color: orange;*/
+    background-color: #888;
 }
 
 
 #inputbox {
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none;
+    /*remove the resize handle on the bottom right*/
     padding: 14px;
+    padding-left: 20px;
     margin: 0px;
     width: 100%;
-/*    color: white;*/
+    /*    color: white;*/
     font-size: 94%;
     line-height: 1.3em;
     height: 100%;
 }
 
+
 #outputbox {
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
     padding: 14px;
+    padding-left: 20px;
     width: 100%;
-/*    color: white;*/
-        font-size: 94%;
+    /*    color: white;*/
+    font-size: 94%;
     line-height: 1.3em;
     height: 100%;
 }
 
 #editor {
-/*    font-size:14px;*/
+    /*    font-size:14px;*/
     position: relative;
     width: 100%;
-    height:65vh;
+    height: 100%;
 }
 
-#editor *{ font-family : monospace !important;font-size: 16px !important;direction:ltr !important;text-align:left !important;}
+#editor * {
+    font-family: monospace !important;
+    font-size: 16px !important;
+    direction: ltr !important;
+    text-align: left !important;
+}
 
 
 /* width */
 ::-webkit-scrollbar {
-  width: 4px;
+    width: 4px;
 }
 
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: orange;
+    background: orange;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #888;
+    background: #888;
 }
-.exec{
+
+.exec {
     color: white;
 }
 
-.lang-sel{
-    
+.lang-sel {
+
     border: none;
     font-size: 100%;
 }
-option{
-    font-size:100%;
+
+option {
+    font-size: 100%;
     text-transform: lowercase;
-    margin:1px;
+    margin: 1px;
 }
 
 
-.form-group{
-    margin: 0px;   
+.form-group {
+    margin: 0px;
 }
 
-.mnhold{
+.mnhold {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -144,10 +175,11 @@ option{
 }
 
 
-.settingsbut{
+.settingsbut {
     font-size: 170%;
     margin-right: 20px;
     color: orange;
+    cursor: pointer;
 }
 
 
@@ -167,7 +199,60 @@ option{
 
 
 
+/*settings page*/
 
+.settingspage {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(6px);
+}
+
+.settingspane {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+/*    border: 2px solid black;*/
+    width: 70%;
+    height: 15%;
+/*    background-color: #2f3129 ;*/
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.setOne, .setTwo , .setThree{
+    width: 30%;
+    height: 85%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color:orange;
+    font-size: 200%;
+    align-items: center;
+}
+.setIconHold{
+    display: flex;
+    justify-content: center;
+}
+.setSel > div > i{
+    font-size: 200%;
+}
+.setButText{
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
+.setOne:hover, .setTwo:hover, .setThree:hover{
+    background-color: orange;
+    cursor: pointer;
+    color:white;
+}
 
 
 
@@ -175,33 +260,35 @@ option{
 
 /*laptops and desktops*/
 @media only screen and (min-width:1200px) {
-    .iholder{
-        margin-left: 4px;
+
+    .iholder {
         margin-right: 4px;
     }
-    .oholder{
-        margin-right: 4px;
+
+    .settingspane {
+        width: 35%;
+        height: 15%;
     }
 
 }
 
 /*potrait mode for tabs*/
 @media only screen and (max-width:1023px) {
-    
 
-    .iholder{
-        margin-left: 4px;
+
+    .iholder {
         margin-right: 4px;
     }
-    .oholder{
-        margin-right: 4px;
+    .settingspane {
+        width: 70%;
+        height: 15%;
     }
 }
 
 /*tabs*/
 @media only screen and (max-width:767px) {
-
-
+    
+    
 }
 
 /*normal phones*/
@@ -209,37 +296,39 @@ option{
     * {
         font-size: 14px;
     }
-    .remainingbody{
+
+    .remainingbody {
         width: 100%;
     }
-    .runbutton{
+
+    .runbutton {
         margin-left: 8px;
     }
-        .iholder{
-        margin-left: 4px;
+
+    .iholder {
         margin-right: 4px;
     }
-    .oholder{
-        margin-right: 4px;
-    }
-}
     
-
-}
-
-
-
-.light{
-    background-color:white;
-    color:black;
-}
-
-.dark{
-    background-color:#272822;
-    color: white;
+    
+    .settingspane {
+        width: 75%;
+        height: 12%;
+    }
+    
+    
 }
 
 
 
 
 
+
+.light {
+    background-color: white;
+    color: #272822;
+}
+
+.dark {
+    background-color: #272822;
+    color: #eee;
+}
