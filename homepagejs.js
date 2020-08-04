@@ -9,6 +9,7 @@ var navbarOfficial = document.querySelector(".navbar");
 var ioContainer = document.querySelector(".ioAreaContainer");
 var codeAreaContainer = document.querySelector(".codeAreaContainer");
 var settingsPage = document.querySelector(".settingspage");
+var runanim = document.querySelector(".runanim");
 
 
 var setOne = document.querySelector(".setOne");
@@ -28,6 +29,7 @@ editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/c_cpp");
 
 const startTheme = () => {
+    runanim.style.display="none";
     inparea.classList.add('dark');
     outputArea.classList.add('dark');
     bodytotal.classList.add('dark');
@@ -141,6 +143,7 @@ runbutton.addEventListener("click", () => {
         issued = false;
     }
     if (issued) {
+        runanim.style.display="block";
         runbutton.textContent = "SUBMITTING";
         runbutton.classList.add("runbutton-add");
         runbutton.disabled = true;
@@ -164,7 +167,8 @@ runbutton.addEventListener("click", () => {
                     runbutton.textContent = "COMPILING";
                     goOutp();
                 } catch (err) {
-                    console.log("some");
+                    console.log("some error");
+                    runanim.style.display="none";
                     runbutton.textContent = "RUN";
                     runbutton.classList.remove("runbutton-add");
                     runbutton.disabled = false;
@@ -208,6 +212,7 @@ const goOutp = () => {
                         }
                         //if python then stderr report
                     }
+                    runanim.style.display="none";
                     runbutton.textContent = "RUN";
                     runbutton.classList.remove("runbutton-add");
                     runbutton.disabled = false;
@@ -217,6 +222,7 @@ const goOutp = () => {
 
             } catch (err) {
                 console.log(err);
+                runanim.style.display="none";
                 runbutton.textContent = "RUN";
                 runbutton.classList.remove("runbutton-add");
                 runbutton.disabled = false;

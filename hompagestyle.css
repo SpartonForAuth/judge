@@ -182,7 +182,10 @@ option {
     cursor: pointer;
 }
 
-
+.runanim{
+    font-size: 24px;
+    color:orange;
+}
 
 
 
